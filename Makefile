@@ -1,5 +1,5 @@
 NAME = philo
-SRC = main.c
+SRC = main.c event.c eventq.c eventq_singleton.c
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Werror -Wextra
 
