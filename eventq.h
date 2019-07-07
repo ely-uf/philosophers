@@ -16,7 +16,7 @@ typedef struct			s_eventq
 	t_event_list		*ev_lst_tail;
 }						t_eventq;
 
-int						event_dispatch(t_eventq *evq, t_event ev);
-t_event					event_poll(t_eventq *evq);
+int						eventq_init(t_eventq *queue);
+int						eventq_deinit(t_eventq *queue);
 
 #endif

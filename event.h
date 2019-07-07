@@ -6,6 +6,8 @@
 # include "fork.h"
 # include "philosopher.h"
 
+typedef struct s_eventq	t_eventq;
+
 typedef enum		e_event_type
 {
 	P_EV_NONE,
@@ -57,5 +59,8 @@ typedef struct		s_event
 		t_died_ev	died;
 	}				ev;
 }					t_event;
+
+int					event_dispatch(t_eventq *evq, t_event ev);
+t_event				event_poll(t_eventq *evq);
 
 #endif
