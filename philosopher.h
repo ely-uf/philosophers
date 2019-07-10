@@ -3,6 +3,7 @@
 
 # include <pthread.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include "philo_const.h"
 # include "fork.h"
 
@@ -20,6 +21,7 @@ typedef struct		s_philosopher
 	size_t			hp;
 	t_phil_state	state;
 	t_fork			*forks[2];
+	_Atomic bool	alive;
 }					t_philosopher;
 
 int		philosopher_init(t_philosopher *philo, t_fork fork_list[PHILO_N], int id);
