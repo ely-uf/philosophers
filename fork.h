@@ -9,4 +9,6 @@ typedef struct		s_fork
 	pthread_mutex_t mutex;
 }					t_fork;
 
+int		fork_init(t_fork *fork, int id);
+
 #endif
