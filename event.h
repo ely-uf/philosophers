@@ -20,12 +20,6 @@ typedef enum		e_event_type
 	P_SIMULATION_END,
 }					t_event_type;
 
-typedef enum		e_fork_side
-{
-	F_LEFT = 0,
-	F_RIGHT = 1
-}					t_fork_side;
-
 typedef struct		s_state_ev
 {
 	int				id;

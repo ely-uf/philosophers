@@ -3,6 +3,12 @@
 
 # include <pthread.h>
 
+typedef enum		e_fork_side
+{
+	F_LEFT = 0,
+	F_RIGHT = 1
+}					t_fork_side;
+
 typedef struct		s_fork
 {
 	int				id;
