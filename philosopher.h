@@ -18,7 +18,7 @@ typedef struct		s_philosopher
 	pthread_t		thread_id;
 	size_t			hp;
 	t_phil_state	state;
-	t_fork			forks[2];
+	t_fork			*forks[2];
 }					t_philosopher;
 
 #endif
