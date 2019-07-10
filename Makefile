@@ -1,5 +1,6 @@
 NAME = philo
-SRC = main.c event.c eventq.c eventq_singleton.c
+SRC = main.c event.c eventq.c eventq_singleton.c simulation.c \
+	  philosopher.c fork.c
 OBJ = $(SRC:.c=.o)
 CFLAGS = -Wall -Werror -Wextra
 
