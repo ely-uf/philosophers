@@ -25,5 +25,7 @@ typedef struct		s_philosopher
 }					t_philosopher;
 
 int		philosopher_init(t_philosopher *philo, t_fork fork_list[PHILO_N], int id);
+int		philosopher_run(t_philosopher *philo);
+int		philosopher_stop(t_philosopher *philo);
 
 #endif
