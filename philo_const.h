@@ -5,6 +5,8 @@
 #  define PHILO_N	7
 # endif
 
+# define FORK_N PHILO_N
+
 # if PHILO_N % 2 == 0
 #  error "The number of philosophers should be odd."
 # endif
