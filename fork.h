@@ -17,5 +17,7 @@ typedef struct		s_fork
 
 int		fork_init(t_fork *fork, int id);
 void	fork_deinit(t_fork *fork);
+int		fork_try_acquire(t_fork *fork);
+void	fork_release(t_fork *fork);
 
 #endif
