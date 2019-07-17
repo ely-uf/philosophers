@@ -4,19 +4,29 @@
 **	Avoiding global variables...
 */
 
-static bool	*simulation_status(void)
+static t_simstate	*_simulation_state_get(void)
 {
-	static bool alive = true;
+	static t_simstate alive = S_RUNNING;
 
 	return (&alive);
 }
 
-bool		simulation_alive(void)
+void		simulation_suspend(void)
 {
-	return (*simulation_status());
+	*_simulation_state_get() = S_SUSPENDED;
+}
+
+void		simulation_resume(void)
+{
+	*_simulation_state_get() = S_RUNNING;
 }
 
 void		simulation_stop(void)
 {
-	*simulation_status() = false;
+	*_simulation_state_get() = S_DONE;
+}
+
+t_simstate	simulation_state_get(void)
+{
+	return (*_simulation_state_get());
 }
