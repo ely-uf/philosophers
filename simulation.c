@@ -1,4 +1,4 @@
-#include <sys/time.h>
+#include <unistd.h>
 #include "simulation.h"
 #include "philo_const.h"
 #include "philosopher.h"
@@ -9,6 +9,8 @@
 static int	simulation_init(t_philosopher ph[PHILO_N], t_fork forks[FORK_N])
 {
 	size_t	i;
+
+	event_dispatch(eventq_get(), (t_event){ .type = P_SIMULATION_INIT });
 
 	i = 0;
 	while (i < FORK_N)
@@ -23,8 +25,6 @@ static int	simulation_init(t_philosopher ph[PHILO_N], t_fork forks[FORK_N])
 		philosopher_init(&ph[i], forks, i);
 		i++;
 	}
-
-	event_dispatch(eventq_get(), (t_event){ .type = P_SIMULATION_INIT });
 
 	return (0);
 }
@@ -72,21 +72,23 @@ int			simulation_run(void)
 {
 	t_philosopher	philosophers[PHILO_N];
 	t_fork			forks[FORK_N];
-	time_t			start_time;
+	size_t			mseconds;
 
 	simulation_init(philosophers, forks);
-	start_time = time(NULL);
-
 	philosophers_run(philosophers);
 
-	while (simulation_alive())
+	mseconds = 0;
+	while (simulation_state_get() != S_DONE)
 	{
-		if (time(NULL) - start_time >= TIMEOUT)
+		usleep(SIMUL_STEP_MSECONDS * 1000);
+		if (simulation_state_get() == S_SUSPENDED)
+			continue ;
+		mseconds += SIMUL_STEP_MSECONDS;
+		if (mseconds >= SEC_TO_MSEC(TIMEOUT))
 			simulation_stop();
 	}
 
 	philosophers_stop(philosophers);
-
 	simulation_deinit(philosophers, forks);
 
 	return (0);
