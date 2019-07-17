@@ -25,6 +25,7 @@ typedef struct		s_philosopher
 	int				forks_held;
 	size_t			mseconds_alive;
 	size_t			state_start_time;
+	_Atomic bool	suspended;
 	_Atomic bool	alive;
 }					t_philosopher;
 
@@ -33,5 +34,7 @@ typedef int			(*t_phil_action)(t_philosopher *);
 int		philosopher_init(t_philosopher *philo, t_fork fork_list[PHILO_N], int id);
 int		philosopher_run(t_philosopher *philo);
 int		philosopher_stop(t_philosopher *philo);
+void	philosopher_suspend(t_philosopher *philo);
+void	philosopher_resume(t_philosopher *philo);
 
 #endif

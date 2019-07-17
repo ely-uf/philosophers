@@ -6,6 +6,16 @@ void	*philosopher_routine(void *self)
 	return (self);
 }
 
+void	philosopher_suspend(t_philosopher *ph)
+{
+	ph->suspended = true;
+}
+
+void	philosopher_resume(t_philosopher *ph)
+{
+	ph->suspended = false;
+}
+
 int		philosopher_stop(t_philosopher *ph)
 {
 	ph->alive = false;
@@ -26,6 +36,8 @@ int		philosopher_init(t_philosopher *ph, t_fork fork_list[PHILO_N], int id)
 	ph->forks[F_RIGHT] = &fork_list[id];
 	ph->forks[F_LEFT] = id == PHILO_N - 1 ? &fork_list[0] : &fork_list[id + 1];
 	ph->forks_held = 0;
+	ph->alive = true;
+	ph->suspended = false;
 
 	return (0);
 }
