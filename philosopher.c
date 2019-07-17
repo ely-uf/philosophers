@@ -1,10 +1,6 @@
 #include "philosopher.h"
+#include "philosopher_routine.h"
 #include "philosopher_actions.h"
-
-void	*philosopher_routine(void *self)
-{
-	return (self);
-}
 
 void	philosopher_suspend(t_philosopher *ph)
 {
