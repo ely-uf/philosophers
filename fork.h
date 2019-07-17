@@ -16,5 +16,6 @@ typedef struct		s_fork
 }					t_fork;
 
 int		fork_init(t_fork *fork, int id);
+void	fork_deinit(t_fork *fork);
 
 #endif
