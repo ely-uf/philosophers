@@ -11,7 +11,8 @@ typedef enum		e_phil_state
 {
 	P_EAT,
 	P_REST,
-	P_THINK
+	P_THINK,
+	__P_STATE_MAX
 }					t_phil_state;
 
 typedef struct		s_philosopher
@@ -21,8 +22,11 @@ typedef struct		s_philosopher
 	size_t			hp;
 	t_phil_state	state;
 	t_fork			*forks[2];
+	int				forks_held;
 	_Atomic bool	alive;
 }					t_philosopher;
+
+typedef int			(*t_phil_action)(t_philosopher *);
 
 int		philosopher_init(t_philosopher *philo, t_fork fork_list[PHILO_N], int id);
 int		philosopher_run(t_philosopher *philo);
