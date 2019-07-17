@@ -4,6 +4,7 @@
 void	philosopher_state_change(t_philosopher *phil, t_phil_state state)
 {
 	phil->state = state;
+	phil->state_start_time = phil->mseconds_alive;
 	philosopher_state_changed(phil);
 }
 

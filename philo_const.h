@@ -11,6 +11,8 @@
 #  error "The number of philosophers should be odd."
 # endif
 
+# define PHILO_PAUSE_MSECONDS 20
+
 # define MAX_LIFE   10
 # define EAT_T      1
 # define REST_T     3

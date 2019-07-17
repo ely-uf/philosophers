@@ -23,6 +23,8 @@ typedef struct		s_philosopher
 	t_phil_state	state;
 	t_fork			*forks[2];
 	int				forks_held;
+	size_t			mseconds_alive;
+	size_t			state_start_time;
 	_Atomic bool	alive;
 }					t_philosopher;
 
