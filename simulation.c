@@ -68,12 +68,13 @@ static void	philosophers_stop(t_philosopher philosophers[PHILO_N])
 	}
 }
 
-int			simulation_run(void)
+static void *_simulation_run(void *unused)
 {
 	t_philosopher	philosophers[PHILO_N];
 	t_fork			forks[FORK_N];
 	size_t			mseconds;
 
+	(void)unused;
 	simulation_init(philosophers, forks);
 	philosophers_run(philosophers);
 
@@ -90,6 +91,15 @@ int			simulation_run(void)
 
 	philosophers_stop(philosophers);
 	simulation_deinit(philosophers, forks);
+	return (NULL);
+}
 
-	return (0);
+int			simulation_run(pthread_t *simulation_thread)
+{
+	return (pthread_create(simulation_thread, NULL, _simulation_run, NULL));
+}
+
+int 		simulation_kill(pthread_t *simulation_thread)
+{
+	return (pthread_join(*simulation_thread, NULL));
 }
